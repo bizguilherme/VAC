@@ -1,0 +1,16 @@
+---
+title: "Variáveis Aleatórias Contínuas"
+author: "Guilherme Biz"
+format: revealjs
+editor: visual
+footer: "<gbiz@uel.br>" 
+code-fold: true
+---
+
+## Variáveis Aleatórias Contínuas
+
+\- São distribuições de variáveis aleatórias contínuas, ou seja, variáveis para os quais os possíveis valores pertencem a um intervalo de números reais.
+
+- **Definição:** Uma função X, definida sobre o espaço amostral $\Omega$ e assumindo valores num intervalo de números reais, é dita uma variável aleatória contínua.
+
+---
