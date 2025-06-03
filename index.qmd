@@ -1,7 +1,9 @@
 ---
 title: "Variáveis Aleatórias Contínuas"
 author: "Guilherme Biz"
-format: revealjs
+format: 
+  revealjs:
+    css: styles.css
 editor: visual
 footer: "<gbiz@uel.br>" 
 code-fold: true
@@ -9,8 +11,525 @@ code-fold: true
 
 ## Variáveis Aleatórias Contínuas
 
-\- São distribuições de variáveis aleatórias contínuas, ou seja, variáveis para os quais os possíveis valores pertencem a um intervalo de números reais.
+<br>
 
-- **Definição:** Uma função X, definida sobre o espaço amostral $\Omega$ e assumindo valores num intervalo de números reais, é dita uma variável aleatória contínua.
+-   São distribuições de variáveis aleatórias contínuas, ou seja, variáveis para os quais os possíveis valores pertencem a um intervalo de números reais.
 
----
+<br>
+
+-   **Definição:** Uma função X, definida sobre o espaço amostral $\Omega$ e assumindo valores num intervalo de números reais, é dita uma variável aleatória contínua.
+
+------------------------------------------------------------------------
+
+## Exemplos {.espacamento-maior}
+
+-   A quantidade de álcool na corrente sanguínea de uma pessoa.
+
+-   A velocidade do vento em um determinado local.
+
+-   Rendimento de grãos de híbridos de milho.
+
+-   O peso de cada candidato em um exame físico.
+
+------------------------------------------------------------------------
+
+### Função densidade de Probabilidade
+
+-   Seja uma variável aleatória contínua em $\Re$, se existir uma função $f(x)$, tal que:
+
+    -   $f(x)\geq 0$, $\forall \ \ x \in \Re$.
+
+    -   a área entre o gráfico da função $f(x)$ e o eixo $x$ é igual a 1.
+
+        $$\int^{\infty}_{-\infty} f(x) d(x)=1$$
+
+    A função $f(x)$ é chamada função densidade de probabilidade (fdp).
+
+-   O cálculo de probabilidades, para quaisquer números $x_1$ e $x_2$ reais, com $x_1<x_2$, é dado por: $$P(x_1\leq X\leq x_2)=\int^{x_2}_{x_1}f(x)dx.$$
+
+------------------------------------------------------------------------
+
+### Esperança e variância de uma variável aleatória contínua
+
+<br>
+
+-   Como a função $f(x)$ é sempre não negativa, podemos escrever a esperança como: $$E(X)=\int^{\infty}_{-\infty}xf(x)dx.$$
+
+-   Variância para v.a. contínuas é dada por: $$Var(X)=E(X^2)-\left[E(X)\right]^2.$$
+
+------------------------------------------------------------------------
+
+### Função de Distribuição Acumulada
+
+<br>
+
+-   Dada uma v.a. X com f.d.p. $f(x)$, podemos definir a sua função de distribuição acumulada, $F(x)$, como: $$F(x)=P(X\leq x),\ \ \ -\infty<x<\infty,$$ e, segue que: $$F(x)=\int_{-\infty}^xf(t)dt,$$ para todo real $x$.
+
+------------------------------------------------------------------------
+
+### Exercícios
+
+**1.**  Verifique se $f(x)=\frac{x}{8}$ pode ser a densidade de probabilidade de uma variável aleatória definida sobre o intervalo de $x=0$ a $x=4$.
+
+```{r echo=T,eval=F}
+f=function(x) x/8
+plot(f,0,4,lwd=2)
+s=seq(0,4,0.01)
+segments(s,rep(0,401),s,f(s),col=2)
+### Cálculo da integral.
+integrate(f,0,4)
+```
+
+
+**2.**  Com referência ao exercício 1, encontre as probabilidades de uma variável aleatória com densidade de probabilidade dada, ter um valor
+
+**a)**  menor que 2; 
+```{r echo=T,eval=F}
+plot(f,0,4,lwd=2)
+s=seq(0,2,0.01)
+segments(s,rep(0,length(s)),s,f(s),col=3)
+```
+
+**b)**  maior que 1,5
+
+```{r echo=T, eval=F}
+plot(f,0,4,lwd=2)
+s=seq(1.5,4,0.01)
+segments(s,rep(0,length(s)),s,f(s),col=4)
+
+integrate(f,1.5,4)
+```
+
+------------------------------------------------------------------------
+
+### Exercício
+
+<br>
+
+**3.**  Dada a função: $$f(x)=\left\{\begin{array}{cr}
+      2e^{-2x},& x\geq 0\\
+      0, & x<0
+      \end{array}\right.,$$
+
+
+**a.**  Mostre que é uma função densidade de probabilidade (f.d.p.).
+
+```{r echo=T,eval=F}
+g=function(x) 2*exp(-2*x)
+s=seq(0,5,.01)
+plot(g,0,10,lwd=2)
+segments(s,rep(0,length(s)),s,g(s),col=2)
+
+integrate(g,0,Inf)
+```
+
+
+**b.**  Calcule a probabilidade de $X>10$.
+
+```{r echo=T,eval=F}
+integrate(g,10,Inf)
+
+plot(g,9.5,15,lwd=2)
+s=seq(10,15,.01)
+segments(s,rep(0,length(s)),s,g(s),col=2)
+```
+
+
+------------------------------------------------------------------------
+
+### Distribuição Uniforme
+
+<br>
+
+-   Se $X$ é uma variável aleatória contínua assumindo qualquer valor num intervalo (a,b) pertencente a $\Re$, com a mesma probabilidade, diz-se que $X$ tem distribuição uniforme.
+
+-   A f.d.p. da distribuição uniforme é dada por: $$f(x)= \left\{\begin{array}{cll}
+    \frac{1}{b-a} & \hbox{para} & x \in (a,b) \\
+    0 & \hbox{para} & x \notin (a,b)
+    \end{array}\right..$$
+
+<br>
+
+-   **Notação:** $X \sim U(a,b)$.
+
+------------------------------------------------------------------------
+
+<br>
+
+-   **Exemplo 1:** Se uma v.a. assume qualquer valor no intervalo (-2,3) com a mesma probabilidade, a distribuição uniforme tem a seguinte função de densidade:
+
+    $$f(x)=\left\{\begin{array}{cll}
+    \frac{1}{3-(-2)}=\frac{1}{5} & \hbox{para} & x \in (-2,3) \\
+    0 & \hbox{para} & x \notin (-2,3)
+    \end{array}\right..$$ Qual a probabilidade de x estar entre 0 e 2?
+
+```{r echo=T,eval=F}
+plot(function(x)dunif(x,-2,3),-2,3,ylim=c(0,.25),lwd=2)
+## Probabilidade de x estar entre 0 e 2
+s=seq(0,2,.001)
+segments(s,rep(0,length(s)),s,f(s),col="red")
+## Calculando a probabilidade utilizando punif
+punif(2,-2,3)-punif(0,-2,3)
+```
+
+
+------------------------------------------------------------------------
+
+## Parâmetros característicos da Distribuição Uniforme {.espacamento-maior}
+
+-   Média $\mu=\frac{a+b}{2}$.
+
+-   Variância $\sigma^2=\frac{(b-a)^2}{12}$.
+
+-   Desvio padrão $\sigma=\frac{b-a}{\sqrt{12}}$.
+
+------------------------------------------------------------------------
+
+### Exercícios
+
+<br>
+
+**4.**  Se uma v.a. U assume qualquer valor no intervalo $(\frac{-1}{2},\frac{1}{2})$ com a mesma probabilidade, qual é a f.d.p. desta v.a.?
+
+Qual é a função de distribuição desta v.a.?
+
+Calcule a média, variância e desvio padrão desta v.a..
+
+Qual a probabilidade de $u>-\frac{1}{5}$?
+
+```{r echo=T,eval=F}
+f=function(x)dunif(x,min=-1/2,max=1/2)
+
+plot(f,-.5,.5,lwd=3,ylim=c(0,1.1),las=1)
+s=seq(-1/5,1/2,0.01)
+segments(s,rep(0,length(s)),s,f(s),col="red")
+
+# Qual a probilidade de u>-1/5?
+punif(-1/5,-1/2,1/2,lower.tail = F)
+
+```
+
+------------------------------------------------------------------------
+
+### Distribuição Normal
+
+-   A distribuição Normal corresponde a mais importante distribuição de variáveis aleatórias, em razão da sua enorme aplicação.
+
+-   A função densidade de probabilidade de uma variável aleatória contínua X, seguindo uma distribuição normal, é dada por: $$f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}}$$ em que os parâmetros $\mu$ e $\sigma^2$ são respectivamente a média e a variância da distribuição.
+
+    <br>
+
+-   **Notação:** $X\sim N(\mu,\sigma^2)$.
+
+------------------------------------------------------------------------
+
+### Propriedades da distribuição Normal
+
+<br>
+
+**1.**  É simétrica em relação a $\mu$;
+
+<br>
+
+**2.**  O ponto de máximo de $f(x)$ ocorre em $x=\mu$. Neste ponto as três medidas de posição (média, moda e mediana) se confundem.
+
+<br>
+
+**3.**  A área compreendida abaixo da curva normal e acima do eixo $x$ vale 1.  
+
+------------------------------------------------------------------------
+
+### Distribuição Normal - Transformação da V.A.
+
+<br>
+
+-   Devido a dificuldade de resolução dessa integral, procurou-se métodos alternativos para obtenção das probabilidades.
+
+<br>
+
+-   Uma das formas mais utilizadas é por meio de tabela de probabilidades de uma distribuição Normal padrão (Z).
+
+------------------------------------------------------------------------
+
+### Distribuição Normal Padrão
+
+<br>
+
+-   Uma propriedade interessante de uma variável aleatória X que segue qualquer distribuição Normal é a de que ela pode ser transformada em uma variável normal padrão Z, por meio da expressão $$z=\frac{x-\mu}{\sigma}.$$
+
+<br>
+
+-   As áreas referentes à variável z são geralmente tabeladas do tipo $P(0<Z<z)$.
+
+------------------------------------------------------------------------
+
+### Exemplo
+
+-   **Exemplo 2:** A distribuição da altura de plantas de *Amaranthus hybridus*, X, pode ser aproximada por uma distribuição normal de média $\mu =29,5$cm e desvio padrão $\sigma=2,7$cm. A probabilidade de uma planta apresentar altura:
+
+<br>
+
+::::: columns
+::: column
+**a.**  entre 29,7 e 32,0 cm é:
+```{r echo=T,eval=F}
+install.packages("BSDA")
+BSDA::normarea(29.7,32,29.5,2.7)
+## Calculando
+pnorm(32,29.5,2.7)-pnorm(29.7,29.5,2.7)
+# ou pela normal padrão
+pnorm(0.93)-pnorm(0.07)
+```
+**b.**  acima de 32,0 cm é:
+```{r echo=T,eval=F}
+BSDA::normarea(32,Inf,m=29.5,sig=2.7)
+##Calculando
+pnorm(32,29.5,2.7,lower.tail = F)
+# ou pela normal padrão
+pnorm(0.93,lower.tail = F)
+```
+:::
+
+::: column
+**c.**  entre 27,0 e 32,0 cm é:
+```{r echo=T,eval=F}
+BSDA::normarea(27,32,29.5,2.7)
+##Calculando
+pnorm(32,29.5,2.7)-pnorm(27,29.5,2.7)
+# ou pela normal padrão
+pnorm(.93)-pnorm(-.93)
+```
+**d.**  entre 25,0 e 27,0 cm é:
+```{r echo=T,eval=F}
+BSDA::normarea(25,27,29.5,2.7)
+##Calculando
+pnorm(27,29.5,2.7)-pnorm(25,29.5,2.7)
+# ou pela normal padrão
+pnorm(-.93)-pnorm(-1.67)
+```
+:::
+:::::
+
+------------------------------------------------------------------------
+
+### Exercícios
+
+<br>
+
+**5.**  Seja $Z\sim N(0,1)$. Usando a tabela da distribuição normal padrão, calcular:
+
+::::: columns
+::: column
+**a)**  $P(0<z<1,57)$
+
+**b)**  $P(-1,89<z<0)$
+
+**c)**  $P(-1,23<z<1,05)$
+
+**d)**  $P(-0,85<z<1,92)$
+:::
+
+::: column
+**e)**  $P(-2,22<z<-1,35)$
+
+**f)**  $P(0,52<z<1,23)$
+
+**g)**  $P(z>-1,27)$
+
+**h)**  $P(z<2,23)$
+:::
+:::::
+
+::: {.scrollable style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"}
+```{r echo=T,eval=F}
+# a)
+pnorm(1.57)-pnorm(0)
+BSDA::normarea(0,1.57,0,1)
+# b)
+pnorm(0)-pnorm(-1.89)
+BSDA::normarea(-1.89,0,0,1)
+# c)
+BSDA::normarea(-1.23,1.05,0,1)
+pnorm(1.05)-pnorm(-1.23)
+# d)
+pnorm(1.92)-pnorm(-0.85)
+# e)
+pnorm(-1.35)-pnorm(-2.22)
+# f)
+pnorm(1.23)-pnorm(0.52)
+# g)
+pnorm(-1.27, lower.tail = F)
+# h)
+pnorm(2.23)
+```
+:::
+
+------------------------------------------------------------------------
+
+### Exercício
+
+**6.**  Sabendo-se que $Z\sim N(0,1)$ e usando a tabela da distribuição normal padrão, obter $z$ tal que:
+
+::::: columns
+::: column
+**(a)** $P(0<Z<z)=0,475$
+
+**(b)** $P(-z<Z<0)=0,35314$
+
+**(c)** $P(-z<Z<z)=0,95$
+
+**(d)** $P(Z<z)=0,36693$
+:::
+
+::: column
+**(e)** $P(Z<z)=0,82121$\
+**(f)** $P(Z<z)=0,30153$\
+**(g)** $P(Z>z)=0,95254$\
+**(h)** $P(Z>z)=0,07493$\
+:::
+:::::
+
+::: {.scrollable style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"}
+```{r echo=T,eval=F}
+# a)
+qnorm(0.975)
+# b)
+qnorm(0.5-0.35314)
+# c)
+qnorm(0.025)
+# d)
+qnorm(0.36693)
+# e)
+qnorm(0.82121)
+# f)
+qnorm(0.30153)
+# g)
+qnorm(0.95254,lower.tail = F)
+# h)
+qnorm(0.07493,lower.tail = F)
+```
+:::
+
+------------------------------------------------------------------------
+
+### Exercício
+
+**7.**  Seja $Y\sim N(4,1)$. Determine:
+
+<br>
+
+::::: columns
+::: column
+**a)**  $P(Y\leq 4)$
+
+**b)**  $P(4<Y<5)$
+
+**c)**  $P(2<Y<5)$
+:::
+
+::: column
+**d)**  $P(5<Y<7)$
+
+**e)**  $P(Y\leq 1)$
+
+**f)**  $P(0\leq Y\leq 2)$
+:::
+:::::
+```{r echo=T,eval=F}
+# a)
+pnorm(4,4,1)
+# b)
+pnorm(5,4,1)-pnorm(4,4,1)
+# c)
+pnorm(5,4,1)-pnorm(2,4,1)
+# d)
+pnorm(7,4,1)-pnorm(5,4,1)
+# e)
+pnorm(1,4,1)
+# f)
+pnorm(2,4,1)-pnorm(0,4,1)
+```
+
+------------------------------------------------------------------------
+
+### Exercício
+
+<br>
+
+**8.**  O diâmetro (X) de certa espécie de árvore é uma variável aleatória com distribuição normal de média 50 cm e desvio padrão de 6 cm. Se o diâmetro de uma árvore diferir da média de mais de 10 cm, esta árvore é vendida por 10 u.m; caso contrário, é vendida por 20 u.m. Qual o preço médio de venda de cada árvore?
+
+
+```{r echo=T,eval=F}
+pv20=pnorm(60,50,6)-pnorm(40,50,6)
+pv10=1-pv20
+(ValorMedioVenda=10*pv10+20*pv20)
+```
+------------------------------------------------------------------------
+
+### A dist. Normal como aproximação da dist. Binomial
+
+<br>
+
+-   Sendo $X\sim b(n,p)$ e n suficientemente grande, a aproximação pela distribuição Normal é aceitável. Em geral $np\geq5$ e $np(1-p)\geq5.$
+
+<br>
+
+-   A aproximação será feita por meio da variável $$Y\sim N\left(\mu=np,\sigma^2=np(1-p)\right).$$
+
+------------------------------------------------------------------------
+
+### Exemplo
+
+<br>
+
+**Exemplo 3:** Considere uma variável $X\sim b(200;0,3)$, qual a probabilidade de x ser maior ou igual que 50. Realize os cálculos de probabilidade utilizando a aproximação $Y\sim N(60,42)$.
+
+
+  
+::: {.scrollable style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"}
+
+```{r echo=TRUE, eval=FALSE}
+### Pela binomial
+fb=function(x)dbinom(x,200,.3)
+plot(fb,0,200,type="h",lwd=1.5)
+
+## Pela aproximação da dist. Normal
+fn=function(x)dnorm(x,60,sqrt(42))
+plot(fn,0,200,add=T,col="blue",lwd=2)
+
+s=seq(49.5,200,0.001)
+segments(s,rep(0,length(s)),s,fn(s),col=2)
+### Correção
+s=seq(49.5,50,0.001)
+segments(s,rep(0,length(s)),s,fn(s),col=3)
+
+
+### Calculando probabilidade pela binomial
+pbinom(49,200,.3,lower.tail = F)
+
+### Calculando probabilidade pela normal
+pnorm(49.5,60,sqrt(42),lower.tail = F)
+pnorm(-1.62,lower.tail = F)
+```
+:::
+
+------------------------------------------------------------------------
+
+### Exercício
+
+**9.**  Foi feito um estudo sobre altura de plantas de milho de certo híbrido, observando-se que ela se distribui normalmente com média igual a 2,20 m e desvio padrão igual a 0,20 m. Qual a porcentagem de plantas com altura:
+
+
+
+**a.**  entre 2,15 m e 2,25 m;
+```{r echo=TRUE, eval=FALSE}
+pnorm(2.25,2.2,.2)-pnorm(2.15,2.2,.2)
+```
+**b.**  entre 2,00 m e 2,40 m;
+```{r echo=TRUE, eval=FALSE}
+pnorm(2.4,2.2,.2)-pnorm(2,2.2,.2)
+```
+**c.**  acima de 2,30 m.
+```{r echo=TRUE, eval=FALSE}
+pnorm(2.3,2.2,.2,lower.tail = F)
+```

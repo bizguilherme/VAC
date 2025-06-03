@@ -28,8 +28,74 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
+  <link rel="stylesheet" href="styles.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -140,13 +206,496 @@ Guilherme Biz
 </section>
 <section id="variáveis-aleatórias-contínuas" class="slide level2">
 <h2>Variáveis Aleatórias Contínuas</h2>
-<p>- São distribuições de variáveis aleatórias contínuas, ou seja, variáveis para os quais os possíveis valores pertencem a um intervalo de números reais.</p>
+<p><br></p>
+<ul>
+<li>São distribuições de variáveis aleatórias contínuas, ou seja, variáveis para os quais os possíveis valores pertencem a um intervalo de números reais.</li>
+</ul>
+<p><br></p>
 <ul>
 <li><strong>Definição:</strong> Uma função X, definida sobre o espaço amostral <span class="math inline">\(\Omega\)</span> e assumindo valores num intervalo de números reais, é dita uma variável aleatória contínua.</li>
 </ul>
 </section>
+<section id="exemplos" class="slide level2 espacamento-maior">
+<h2>Exemplos</h2>
+<ul>
+<li><p>A quantidade de álcool na corrente sanguínea de uma pessoa.</p></li>
+<li><p>A velocidade do vento em um determinado local.</p></li>
+<li><p>Rendimento de grãos de híbridos de milho.</p></li>
+<li><p>O peso de cada candidato em um exame físico.</p></li>
+</ul>
+</section>
 <section class="slide level2">
 
+<h3 id="função-densidade-de-probabilidade">Função densidade de Probabilidade</h3>
+<ul>
+<li><p>Seja uma variável aleatória contínua em <span class="math inline">\(\Re\)</span>, se existir uma função <span class="math inline">\(f(x)\)</span>, tal que:</p>
+<ul>
+<li><p><span class="math inline">\(f(x)\geq 0\)</span>, <span class="math inline">\(\forall \ \ x \in \Re\)</span>.</p></li>
+<li><p>a área entre o gráfico da função <span class="math inline">\(f(x)\)</span> e o eixo <span class="math inline">\(x\)</span> é igual a 1.</p>
+<p><span class="math display">\[\int^{\infty}_{-\infty} f(x) d(x)=1\]</span></p></li>
+</ul>
+<p>A função <span class="math inline">\(f(x)\)</span> é chamada função densidade de probabilidade (fdp).</p></li>
+<li><p>O cálculo de probabilidades, para quaisquer números <span class="math inline">\(x_1\)</span> e <span class="math inline">\(x_2\)</span> reais, com <span class="math inline">\(x_1&lt;x_2\)</span>, é dado por: <span class="math display">\[P(x_1\leq X\leq x_2)=\int^{x_2}_{x_1}f(x)dx.\]</span></p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="esperança-e-variância-de-uma-variável-aleatória-contínua">Esperança e variância de uma variável aleatória contínua</h3>
+<p><br></p>
+<ul>
+<li><p>Como a função <span class="math inline">\(f(x)\)</span> é sempre não negativa, podemos escrever a esperança como: <span class="math display">\[E(X)=\int^{\infty}_{-\infty}xf(x)dx.\]</span></p></li>
+<li><p>Variância para v.a. contínuas é dada por: <span class="math display">\[Var(X)=E(X^2)-\left[E(X)\right]^2.\]</span></p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="função-de-distribuição-acumulada">Função de Distribuição Acumulada</h3>
+<p><br></p>
+<ul>
+<li>Dada uma v.a. X com f.d.p. <span class="math inline">\(f(x)\)</span>, podemos definir a sua função de distribuição acumulada, <span class="math inline">\(F(x)\)</span>, como: <span class="math display">\[F(x)=P(X\leq x),\ \ \ -\infty&lt;x&lt;\infty,\]</span> e, segue que: <span class="math display">\[F(x)=\int_{-\infty}^xf(t)dt,\]</span> para todo real <span class="math inline">\(x\)</span>.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="exercícios">Exercícios</h3>
+<p><strong>1.</strong> Verifique se <span class="math inline">\(f(x)=\frac{x}{8}\)</span> pode ser a densidade de probabilidade de uma variável aleatória definida sobre o intervalo de <span class="math inline">\(x=0\)</span> a <span class="math inline">\(x=4\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>f<span class="ot">=</span><span class="cf">function</span>(x) x<span class="sc">/</span><span class="dv">8</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">plot</span>(f,<span class="dv">0</span>,<span class="dv">4</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb1-3"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
+<span id="cb1-4"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">401</span>),s,<span class="fu">f</span>(s),<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-5"><a href=""></a><span class="do">### Cálculo da integral.</span></span>
+<span id="cb1-6"><a href=""></a><span class="fu">integrate</span>(f,<span class="dv">0</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>2.</strong> Com referência ao exercício 1, encontre as probabilidades de uma variável aleatória com densidade de probabilidade dada, ter um valor</p>
+<p><strong>a)</strong> menor que 2;</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">plot</span>(f,<span class="dv">0</span>,<span class="dv">4</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb2-2"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="fl">0.01</span>)</span>
+<span id="cb2-3"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(s)),s,<span class="fu">f</span>(s),<span class="at">col=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>b)</strong> maior que 1,5</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">plot</span>(f,<span class="dv">0</span>,<span class="dv">4</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb3-2"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="fl">1.5</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
+<span id="cb3-3"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(s)),s,<span class="fu">f</span>(s),<span class="at">col=</span><span class="dv">4</span>)</span>
+<span id="cb3-4"><a href=""></a></span>
+<span id="cb3-5"><a href=""></a><span class="fu">integrate</span>(f,<span class="fl">1.5</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="exercício">Exercício</h3>
+<p><br></p>
+<p><strong>3.</strong> Dada a função: <span class="math display">\[f(x)=\left\{\begin{array}{cr}
+      2e^{-2x},&amp; x\geq 0\\
+      0, &amp; x&lt;0
+      \end{array}\right.,\]</span></p>
+<p><strong>a.</strong> Mostre que é uma função densidade de probabilidade (f.d.p.).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>g<span class="ot">=</span><span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>x)</span>
+<span id="cb4-2"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,.<span class="dv">01</span>)</span>
+<span id="cb4-3"><a href=""></a><span class="fu">plot</span>(g,<span class="dv">0</span>,<span class="dv">10</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb4-4"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(s)),s,<span class="fu">g</span>(s),<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb4-5"><a href=""></a></span>
+<span id="cb4-6"><a href=""></a><span class="fu">integrate</span>(g,<span class="dv">0</span>,<span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>b.</strong> Calcule a probabilidade de <span class="math inline">\(X&gt;10\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">integrate</span>(g,<span class="dv">10</span>,<span class="cn">Inf</span>)</span>
+<span id="cb5-2"><a href=""></a></span>
+<span id="cb5-3"><a href=""></a><span class="fu">plot</span>(g,<span class="fl">9.5</span>,<span class="dv">15</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb5-4"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">15</span>,.<span class="dv">01</span>)</span>
+<span id="cb5-5"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(s)),s,<span class="fu">g</span>(s),<span class="at">col=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="distribuição-uniforme">Distribuição Uniforme</h3>
+<p><br></p>
+<ul>
+<li><p>Se <span class="math inline">\(X\)</span> é uma variável aleatória contínua assumindo qualquer valor num intervalo (a,b) pertencente a <span class="math inline">\(\Re\)</span>, com a mesma probabilidade, diz-se que <span class="math inline">\(X\)</span> tem distribuição uniforme.</p></li>
+<li><p>A f.d.p. da distribuição uniforme é dada por: <span class="math display">\[f(x)= \left\{\begin{array}{cll}
+\frac{1}{b-a} &amp; \hbox{para} &amp; x \in (a,b) \\
+0 &amp; \hbox{para} &amp; x \notin (a,b)
+\end{array}\right..\]</span></p></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>Notação:</strong> <span class="math inline">\(X \sim U(a,b)\)</span>.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><br></p>
+<ul>
+<li><p><strong>Exemplo 1:</strong> Se uma v.a. assume qualquer valor no intervalo (-2,3) com a mesma probabilidade, a distribuição uniforme tem a seguinte função de densidade:</p>
+<p><span class="math display">\[f(x)=\left\{\begin{array}{cll}
+\frac{1}{3-(-2)}=\frac{1}{5} &amp; \hbox{para} &amp; x \in (-2,3) \\
+0 &amp; \hbox{para} &amp; x \notin (-2,3)
+\end{array}\right..\]</span> Qual a probabilidade de x estar entre 0 e 2?</p></li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">plot</span>(<span class="cf">function</span>(x)<span class="fu">dunif</span>(x,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>),<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>),<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb6-2"><a href=""></a><span class="do">## Probabilidade de x estar entre 0 e 2</span></span>
+<span id="cb6-3"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,.<span class="dv">001</span>)</span>
+<span id="cb6-4"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(s)),s,<span class="fu">f</span>(s),<span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb6-5"><a href=""></a><span class="do">## Calculando a probabilidade utilizando punif</span></span>
+<span id="cb6-6"><a href=""></a><span class="fu">punif</span>(<span class="dv">2</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>)<span class="sc">-</span><span class="fu">punif</span>(<span class="dv">0</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="parâmetros-característicos-da-distribuição-uniforme" class="slide level2 espacamento-maior">
+<h2>Parâmetros característicos da Distribuição Uniforme</h2>
+<ul>
+<li><p>Média <span class="math inline">\(\mu=\frac{a+b}{2}\)</span>.</p></li>
+<li><p>Variância <span class="math inline">\(\sigma^2=\frac{(b-a)^2}{12}\)</span>.</p></li>
+<li><p>Desvio padrão <span class="math inline">\(\sigma=\frac{b-a}{\sqrt{12}}\)</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="exercícios-1">Exercícios</h3>
+<p><br></p>
+<p><strong>4.</strong> Se uma v.a. U assume qualquer valor no intervalo <span class="math inline">\((\frac{-1}{2},\frac{1}{2})\)</span> com a mesma probabilidade, qual é a f.d.p. desta v.a.?</p>
+<p>Qual é a função de distribuição desta v.a.?</p>
+<p>Calcule a média, variância e desvio padrão desta v.a..</p>
+<p>Qual a probabilidade de <span class="math inline">\(u&gt;-\frac{1}{5}\)</span>?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>f<span class="ot">=</span><span class="cf">function</span>(x)<span class="fu">dunif</span>(x,<span class="at">min=</span><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,<span class="at">max=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb7-2"><a href=""></a></span>
+<span id="cb7-3"><a href=""></a><span class="fu">plot</span>(f,<span class="sc">-</span>.<span class="dv">5</span>,.<span class="dv">5</span>,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.1</span>),<span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb7-4"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,<span class="fl">0.01</span>)</span>
+<span id="cb7-5"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(s)),s,<span class="fu">f</span>(s),<span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb7-6"><a href=""></a></span>
+<span id="cb7-7"><a href=""></a><span class="co"># Qual a probilidade de u&gt;-1/5?</span></span>
+<span id="cb7-8"><a href=""></a><span class="fu">punif</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>,<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,<span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="distribuição-normal">Distribuição Normal</h3>
+<ul>
+<li><p>A distribuição Normal corresponde a mais importante distribuição de variáveis aleatórias, em razão da sua enorme aplicação.</p></li>
+<li><p>A função densidade de probabilidade de uma variável aleatória contínua X, seguindo uma distribuição normal, é dada por: <span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}}\]</span> em que os parâmetros <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span> são respectivamente a média e a variância da distribuição.</p>
+<p><br></p></li>
+<li><p><strong>Notação:</strong> <span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="propriedades-da-distribuição-normal">Propriedades da distribuição Normal</h3>
+<p><br></p>
+<p><strong>1.</strong> É simétrica em relação a <span class="math inline">\(\mu\)</span>;</p>
+<p><br></p>
+<p><strong>2.</strong> O ponto de máximo de <span class="math inline">\(f(x)\)</span> ocorre em <span class="math inline">\(x=\mu\)</span>. Neste ponto as três medidas de posição (média, moda e mediana) se confundem.</p>
+<p><br></p>
+<p><strong>3.</strong> A área compreendida abaixo da curva normal e acima do eixo <span class="math inline">\(x\)</span> vale 1.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="distribuição-normal---transformação-da-v.a.">Distribuição Normal - Transformação da V.A.</h3>
+<p><br></p>
+<ul>
+<li>Devido a dificuldade de resolução dessa integral, procurou-se métodos alternativos para obtenção das probabilidades.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Uma das formas mais utilizadas é por meio de tabela de probabilidades de uma distribuição Normal padrão (Z).</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="distribuição-normal-padrão">Distribuição Normal Padrão</h3>
+<p><br></p>
+<ul>
+<li>Uma propriedade interessante de uma variável aleatória X que segue qualquer distribuição Normal é a de que ela pode ser transformada em uma variável normal padrão Z, por meio da expressão <span class="math display">\[z=\frac{x-\mu}{\sigma}.\]</span></li>
+</ul>
+<p><br></p>
+<ul>
+<li>As áreas referentes à variável z são geralmente tabeladas do tipo <span class="math inline">\(P(0&lt;Z&lt;z)\)</span>.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="exemplo">Exemplo</h3>
+<ul>
+<li><strong>Exemplo 2:</strong> A distribuição da altura de plantas de <em>Amaranthus hybridus</em>, X, pode ser aproximada por uma distribuição normal de média <span class="math inline">\(\mu =29,5\)</span>cm e desvio padrão <span class="math inline">\(\sigma=2,7\)</span>cm. A probabilidade de uma planta apresentar altura:</li>
+</ul>
+<p><br></p>
+<div class="columns">
+<div class="column">
+<p><strong>a.</strong> entre 29,7 e 32,0 cm é:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"BSDA"</span>)</span>
+<span id="cb8-2"><a href=""></a>BSDA<span class="sc">::</span><span class="fu">normarea</span>(<span class="fl">29.7</span>,<span class="dv">32</span>,<span class="fl">29.5</span>,<span class="fl">2.7</span>)</span>
+<span id="cb8-3"><a href=""></a><span class="do">## Calculando</span></span>
+<span id="cb8-4"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">32</span>,<span class="fl">29.5</span>,<span class="fl">2.7</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="fl">29.7</span>,<span class="fl">29.5</span>,<span class="fl">2.7</span>)</span>
+<span id="cb8-5"><a href=""></a><span class="co"># ou pela normal padrão</span></span>
+<span id="cb8-6"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">0.93</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="fl">0.07</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>b.</strong> acima de 32,0 cm é:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>BSDA<span class="sc">::</span><span class="fu">normarea</span>(<span class="dv">32</span>,<span class="cn">Inf</span>,<span class="at">m=</span><span class="fl">29.5</span>,<span class="at">sig=</span><span class="fl">2.7</span>)</span>
+<span id="cb9-2"><a href=""></a><span class="do">##Calculando</span></span>
+<span id="cb9-3"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">32</span>,<span class="fl">29.5</span>,<span class="fl">2.7</span>,<span class="at">lower.tail =</span> F)</span>
+<span id="cb9-4"><a href=""></a><span class="co"># ou pela normal padrão</span></span>
+<span id="cb9-5"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">0.93</span>,<span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div><div class="column">
+<p><strong>c.</strong> entre 27,0 e 32,0 cm é:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>BSDA<span class="sc">::</span><span class="fu">normarea</span>(<span class="dv">27</span>,<span class="dv">32</span>,<span class="fl">29.5</span>,<span class="fl">2.7</span>)</span>
+<span id="cb10-2"><a href=""></a><span class="do">##Calculando</span></span>
+<span id="cb10-3"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">32</span>,<span class="fl">29.5</span>,<span class="fl">2.7</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">27</span>,<span class="fl">29.5</span>,<span class="fl">2.7</span>)</span>
+<span id="cb10-4"><a href=""></a><span class="co"># ou pela normal padrão</span></span>
+<span id="cb10-5"><a href=""></a><span class="fu">pnorm</span>(.<span class="dv">93</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span>.<span class="dv">93</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>d.</strong> entre 25,0 e 27,0 cm é:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>BSDA<span class="sc">::</span><span class="fu">normarea</span>(<span class="dv">25</span>,<span class="dv">27</span>,<span class="fl">29.5</span>,<span class="fl">2.7</span>)</span>
+<span id="cb11-2"><a href=""></a><span class="do">##Calculando</span></span>
+<span id="cb11-3"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">27</span>,<span class="fl">29.5</span>,<span class="fl">2.7</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">25</span>,<span class="fl">29.5</span>,<span class="fl">2.7</span>)</span>
+<span id="cb11-4"><a href=""></a><span class="co"># ou pela normal padrão</span></span>
+<span id="cb11-5"><a href=""></a><span class="fu">pnorm</span>(<span class="sc">-</span>.<span class="dv">93</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.67</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="exercícios-2">Exercícios</h3>
+<p><br></p>
+<p><strong>5.</strong> Seja <span class="math inline">\(Z\sim N(0,1)\)</span>. Usando a tabela da distribuição normal padrão, calcular:</p>
+<div class="columns">
+<div class="column">
+<p><strong>a)</strong> <span class="math inline">\(P(0&lt;z&lt;1,57)\)</span></p>
+<p><strong>b)</strong> <span class="math inline">\(P(-1,89&lt;z&lt;0)\)</span></p>
+<p><strong>c)</strong> <span class="math inline">\(P(-1,23&lt;z&lt;1,05)\)</span></p>
+<p><strong>d)</strong> <span class="math inline">\(P(-0,85&lt;z&lt;1,92)\)</span></p>
+</div><div class="column">
+<p><strong>e)</strong> <span class="math inline">\(P(-2,22&lt;z&lt;-1,35)\)</span></p>
+<p><strong>f)</strong> <span class="math inline">\(P(0,52&lt;z&lt;1,23)\)</span></p>
+<p><strong>g)</strong> <span class="math inline">\(P(z&gt;-1,27)\)</span></p>
+<p><strong>h)</strong> <span class="math inline">\(P(z&lt;2,23)\)</span></p>
+</div></div>
+<div class="scrollable" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># a)</span></span>
+<span id="cb12-2"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">1.57</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">0</span>)</span>
+<span id="cb12-3"><a href=""></a>BSDA<span class="sc">::</span><span class="fu">normarea</span>(<span class="dv">0</span>,<span class="fl">1.57</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb12-4"><a href=""></a><span class="co"># b)</span></span>
+<span id="cb12-5"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">0</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.89</span>)</span>
+<span id="cb12-6"><a href=""></a>BSDA<span class="sc">::</span><span class="fu">normarea</span>(<span class="sc">-</span><span class="fl">1.89</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb12-7"><a href=""></a><span class="co"># c)</span></span>
+<span id="cb12-8"><a href=""></a>BSDA<span class="sc">::</span><span class="fu">normarea</span>(<span class="sc">-</span><span class="fl">1.23</span>,<span class="fl">1.05</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb12-9"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">1.05</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.23</span>)</span>
+<span id="cb12-10"><a href=""></a><span class="co"># d)</span></span>
+<span id="cb12-11"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">1.92</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">0.85</span>)</span>
+<span id="cb12-12"><a href=""></a><span class="co"># e)</span></span>
+<span id="cb12-13"><a href=""></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.35</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">2.22</span>)</span>
+<span id="cb12-14"><a href=""></a><span class="co"># f)</span></span>
+<span id="cb12-15"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">1.23</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="fl">0.52</span>)</span>
+<span id="cb12-16"><a href=""></a><span class="co"># g)</span></span>
+<span id="cb12-17"><a href=""></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.27</span>, <span class="at">lower.tail =</span> F)</span>
+<span id="cb12-18"><a href=""></a><span class="co"># h)</span></span>
+<span id="cb12-19"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">2.23</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="exercício-1">Exercício</h3>
+<p><strong>6.</strong> Sabendo-se que <span class="math inline">\(Z\sim N(0,1)\)</span> e usando a tabela da distribuição normal padrão, obter <span class="math inline">\(z\)</span> tal que:</p>
+<div class="columns">
+<div class="column">
+<p><strong>(a)</strong> <span class="math inline">\(P(0&lt;Z&lt;z)=0,475\)</span></p>
+<p><strong>(b)</strong> <span class="math inline">\(P(-z&lt;Z&lt;0)=0,35314\)</span></p>
+<p><strong>(c)</strong> <span class="math inline">\(P(-z&lt;Z&lt;z)=0,95\)</span></p>
+<p><strong>(d)</strong> <span class="math inline">\(P(Z&lt;z)=0,36693\)</span></p>
+</div><div class="column">
+<p><strong>(e)</strong> <span class="math inline">\(P(Z&lt;z)=0,82121\)</span><br>
+<strong>(f)</strong> <span class="math inline">\(P(Z&lt;z)=0,30153\)</span><br>
+<strong>(g)</strong> <span class="math inline">\(P(Z&gt;z)=0,95254\)</span><br>
+<strong>(h)</strong> <span class="math inline">\(P(Z&gt;z)=0,07493\)</span><br>
+</p>
+</div></div>
+<div class="scrollable" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="co"># a)</span></span>
+<span id="cb13-2"><a href=""></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb13-3"><a href=""></a><span class="co"># b)</span></span>
+<span id="cb13-4"><a href=""></a><span class="fu">qnorm</span>(<span class="fl">0.5-0.35314</span>)</span>
+<span id="cb13-5"><a href=""></a><span class="co"># c)</span></span>
+<span id="cb13-6"><a href=""></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>)</span>
+<span id="cb13-7"><a href=""></a><span class="co"># d)</span></span>
+<span id="cb13-8"><a href=""></a><span class="fu">qnorm</span>(<span class="fl">0.36693</span>)</span>
+<span id="cb13-9"><a href=""></a><span class="co"># e)</span></span>
+<span id="cb13-10"><a href=""></a><span class="fu">qnorm</span>(<span class="fl">0.82121</span>)</span>
+<span id="cb13-11"><a href=""></a><span class="co"># f)</span></span>
+<span id="cb13-12"><a href=""></a><span class="fu">qnorm</span>(<span class="fl">0.30153</span>)</span>
+<span id="cb13-13"><a href=""></a><span class="co"># g)</span></span>
+<span id="cb13-14"><a href=""></a><span class="fu">qnorm</span>(<span class="fl">0.95254</span>,<span class="at">lower.tail =</span> F)</span>
+<span id="cb13-15"><a href=""></a><span class="co"># h)</span></span>
+<span id="cb13-16"><a href=""></a><span class="fu">qnorm</span>(<span class="fl">0.07493</span>,<span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="exercício-2">Exercício</h3>
+<p><strong>7.</strong> Seja <span class="math inline">\(Y\sim N(4,1)\)</span>. Determine:</p>
+<p><br></p>
+<div class="columns">
+<div class="column">
+<p><strong>a)</strong> <span class="math inline">\(P(Y\leq 4)\)</span></p>
+<p><strong>b)</strong> <span class="math inline">\(P(4&lt;Y&lt;5)\)</span></p>
+<p><strong>c)</strong> <span class="math inline">\(P(2&lt;Y&lt;5)\)</span></p>
+</div><div class="column">
+<p><strong>d)</strong> <span class="math inline">\(P(5&lt;Y&lt;7)\)</span></p>
+<p><strong>e)</strong> <span class="math inline">\(P(Y\leq 1)\)</span></p>
+<p><strong>f)</strong> <span class="math inline">\(P(0\leq Y\leq 2)\)</span></p>
+</div></div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="co"># a)</span></span>
+<span id="cb14-2"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
+<span id="cb14-3"><a href=""></a><span class="co"># b)</span></span>
+<span id="cb14-4"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">1</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
+<span id="cb14-5"><a href=""></a><span class="co"># c)</span></span>
+<span id="cb14-6"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">1</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
+<span id="cb14-7"><a href=""></a><span class="co"># d)</span></span>
+<span id="cb14-8"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">1</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
+<span id="cb14-9"><a href=""></a><span class="co"># e)</span></span>
+<span id="cb14-10"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
+<span id="cb14-11"><a href=""></a><span class="co"># f)</span></span>
+<span id="cb14-12"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="exercício-3">Exercício</h3>
+<p><br></p>
+<p><strong>8.</strong> O diâmetro (X) de certa espécie de árvore é uma variável aleatória com distribuição normal de média 50 cm e desvio padrão de 6 cm. Se o diâmetro de uma árvore diferir da média de mais de 10 cm, esta árvore é vendida por 10 u.m; caso contrário, é vendida por 20 u.m. Qual o preço médio de venda de cada árvore?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>pv20<span class="ot">=</span><span class="fu">pnorm</span>(<span class="dv">60</span>,<span class="dv">50</span>,<span class="dv">6</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">6</span>)</span>
+<span id="cb15-2"><a href=""></a>pv10<span class="ot">=</span><span class="dv">1</span><span class="sc">-</span>pv20</span>
+<span id="cb15-3"><a href=""></a>(<span class="at">ValorMedioVenda=</span><span class="dv">10</span><span class="sc">*</span>pv10<span class="sc">+</span><span class="dv">20</span><span class="sc">*</span>pv20)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="a-dist.-normal-como-aproximação-da-dist.-binomial">A dist. Normal como aproximação da dist. Binomial</h3>
+<p><br></p>
+<ul>
+<li>Sendo <span class="math inline">\(X\sim b(n,p)\)</span> e n suficientemente grande, a aproximação pela distribuição Normal é aceitável. Em geral <span class="math inline">\(np\geq5\)</span> e <span class="math inline">\(np(1-p)\geq5.\)</span></li>
+</ul>
+<p><br></p>
+<ul>
+<li>A aproximação será feita por meio da variável <span class="math display">\[Y\sim N\left(\mu=np,\sigma^2=np(1-p)\right).\]</span></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="exemplo-1">Exemplo</h3>
+<p><br></p>
+<p><strong>Exemplo 3:</strong> Considere uma variável <span class="math inline">\(X\sim b(200;0,3)\)</span>, qual a probabilidade de x ser maior ou igual que 50. Realize os cálculos de probabilidade utilizando a aproximação <span class="math inline">\(Y\sim N(60,42)\)</span>.</p>
+<div class="scrollable" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="do">### Pela binomial</span></span>
+<span id="cb16-2"><a href=""></a>fb<span class="ot">=</span><span class="cf">function</span>(x)<span class="fu">dbinom</span>(x,<span class="dv">200</span>,.<span class="dv">3</span>)</span>
+<span id="cb16-3"><a href=""></a><span class="fu">plot</span>(fb,<span class="dv">0</span>,<span class="dv">200</span>,<span class="at">type=</span><span class="st">"h"</span>,<span class="at">lwd=</span><span class="fl">1.5</span>)</span>
+<span id="cb16-4"><a href=""></a></span>
+<span id="cb16-5"><a href=""></a><span class="do">## Pela aproximação da dist. Normal</span></span>
+<span id="cb16-6"><a href=""></a>fn<span class="ot">=</span><span class="cf">function</span>(x)<span class="fu">dnorm</span>(x,<span class="dv">60</span>,<span class="fu">sqrt</span>(<span class="dv">42</span>))</span>
+<span id="cb16-7"><a href=""></a><span class="fu">plot</span>(fn,<span class="dv">0</span>,<span class="dv">200</span>,<span class="at">add=</span>T,<span class="at">col=</span><span class="st">"blue"</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb16-8"><a href=""></a></span>
+<span id="cb16-9"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="fl">49.5</span>,<span class="dv">200</span>,<span class="fl">0.001</span>)</span>
+<span id="cb16-10"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(s)),s,<span class="fu">fn</span>(s),<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb16-11"><a href=""></a><span class="do">### Correção</span></span>
+<span id="cb16-12"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="fl">49.5</span>,<span class="dv">50</span>,<span class="fl">0.001</span>)</span>
+<span id="cb16-13"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(s)),s,<span class="fu">fn</span>(s),<span class="at">col=</span><span class="dv">3</span>)</span>
+<span id="cb16-14"><a href=""></a></span>
+<span id="cb16-15"><a href=""></a></span>
+<span id="cb16-16"><a href=""></a><span class="do">### Calculando probabilidade pela binomial</span></span>
+<span id="cb16-17"><a href=""></a><span class="fu">pbinom</span>(<span class="dv">49</span>,<span class="dv">200</span>,.<span class="dv">3</span>,<span class="at">lower.tail =</span> F)</span>
+<span id="cb16-18"><a href=""></a></span>
+<span id="cb16-19"><a href=""></a><span class="do">### Calculando probabilidade pela normal</span></span>
+<span id="cb16-20"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">49.5</span>,<span class="dv">60</span>,<span class="fu">sqrt</span>(<span class="dv">42</span>),<span class="at">lower.tail =</span> F)</span>
+<span id="cb16-21"><a href=""></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.62</span>,<span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="exercício-4">Exercício</h3>
+<p><strong>9.</strong> Foi feito um estudo sobre altura de plantas de milho de certo híbrido, observando-se que ela se distribui normalmente com média igual a 2,20 m e desvio padrão igual a 0,20 m. Qual a porcentagem de plantas com altura:</p>
+<p><strong>a.</strong> entre 2,15 m e 2,25 m;</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">2.25</span>,<span class="fl">2.2</span>,.<span class="dv">2</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="fl">2.15</span>,<span class="fl">2.2</span>,.<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>b.</strong> entre 2,00 m e 2,40 m;</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">2.4</span>,<span class="fl">2.2</span>,.<span class="dv">2</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">2</span>,<span class="fl">2.2</span>,.<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>c.</strong> acima de 2,30 m.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">2.3</span>,<span class="fl">2.2</span>,.<span class="dv">2</span>,<span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 </section>
     </div>
@@ -364,6 +913,44 @@ Guilherme Biz
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

@@ -1,0 +1,22 @@
+/* Justifica apenas os parágrafos do conteúdo, não o footer */
+.reveal .slides section p {
+  text-align: justify;
+}
+
+/* Diminui a fonte apenas no conteúdo dos slides */
+.reveal .slides section {
+  font-size: 0.8em;
+}
+
+/* Garante que o footer continue centralizado */
+.reveal .footer {
+  text-align: center;
+  font-size: 0.8em; /* opcional: ajuste o tamanho se necessário */
+}
+
+
+/* Aumenta o espaçamento entre linhas só nesse slide */
+.reveal section.espacamento-maior p {
+  line-height: 3;  /* ajuste o valor conforme desejar */
+  margin-bottom: 1.2em; /* espaçamento entre parágrafos */
+}
