@@ -263,6 +263,12 @@ punif(-1/5,-1/2,1/2,lower.tail = F)
 
 ------------------------------------------------------------------------
 
+### Distribuição Normal Padrão
+
+<embed src="https://pessoal.uel.br/biz/wp-content/uploads/2025/06/Distribuicao-Normal.pdf" width="100%" height="600px">
+
+---
+
 ### Exemplo
 
 -   **Exemplo 2:** A distribuição da altura de plantas de *Amaranthus hybridus*, X, pode ser aproximada por uma distribuição normal de média $\mu =29,5$cm e desvio padrão $\sigma=2,7$cm. A probabilidade de uma planta apresentar altura:
