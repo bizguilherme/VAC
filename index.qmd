@@ -164,7 +164,8 @@ segments(s,rep(0,length(s)),s,g(s),col=2)
     \end{array}\right..$$ Qual a probabilidade de x estar entre 0 e 2?
 
 ```{r echo=T,eval=F}
-plot(function(x)dunif(x,-2,3),-2,3,ylim=c(0,.25),lwd=2)
+f=function(x)dunif(x,-2,3)
+plot(f,-2,3,ylim=c(0,.25),lwd=2)
 ## Probabilidade de x estar entre 0 e 2
 s=seq(0,2,.001)
 segments(s,rep(0,length(s)),s,f(s),col="red")

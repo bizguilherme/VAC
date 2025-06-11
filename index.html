@@ -353,12 +353,13 @@ Guilherme Biz
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">plot</span>(<span class="cf">function</span>(x)<span class="fu">dunif</span>(x,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>),<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>),<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb6-2"><a href=""></a><span class="do">## Probabilidade de x estar entre 0 e 2</span></span>
-<span id="cb6-3"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,.<span class="dv">001</span>)</span>
-<span id="cb6-4"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(s)),s,<span class="fu">f</span>(s),<span class="at">col=</span><span class="st">"red"</span>)</span>
-<span id="cb6-5"><a href=""></a><span class="do">## Calculando a probabilidade utilizando punif</span></span>
-<span id="cb6-6"><a href=""></a><span class="fu">punif</span>(<span class="dv">2</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>)<span class="sc">-</span><span class="fu">punif</span>(<span class="dv">0</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>f<span class="ot">=</span><span class="cf">function</span>(x)<span class="fu">dunif</span>(x,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb6-2"><a href=""></a><span class="fu">plot</span>(f,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>),<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb6-3"><a href=""></a><span class="do">## Probabilidade de x estar entre 0 e 2</span></span>
+<span id="cb6-4"><a href=""></a>s<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,.<span class="dv">001</span>)</span>
+<span id="cb6-5"><a href=""></a><span class="fu">segments</span>(s,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(s)),s,<span class="fu">f</span>(s),<span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb6-6"><a href=""></a><span class="do">## Calculando a probabilidade utilizando punif</span></span>
+<span id="cb6-7"><a href=""></a><span class="fu">punif</span>(<span class="dv">2</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>)<span class="sc">-</span><span class="fu">punif</span>(<span class="dv">0</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
