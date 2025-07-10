@@ -69,7 +69,7 @@ code-fold: true
 
 ### Exercícios
 
-**1.**  Verifique se $f(x)=\frac{x}{8}$ pode ser a densidade de probabilidade de uma variável aleatória definida sobre o intervalo de $x=0$ a $x=4$.
+**1.** Verifique se $f(x)=\frac{x}{8}$ pode ser a densidade de probabilidade de uma variável aleatória definida sobre o intervalo de $x=0$ a $x=4$.
 
 ```{r echo=T,eval=F}
 f=function(x) x/8
@@ -80,17 +80,17 @@ segments(s,rep(0,401),s,f(s),col=2)
 integrate(f,0,4)
 ```
 
+**2.** Com referência ao exercício 1, encontre as probabilidades de uma variável aleatória com densidade de probabilidade dada, ter um valor
 
-**2.**  Com referência ao exercício 1, encontre as probabilidades de uma variável aleatória com densidade de probabilidade dada, ter um valor
+**a)** menor que 2;
 
-**a)**  menor que 2; 
 ```{r echo=T,eval=F}
 plot(f,0,4,lwd=2)
 s=seq(0,2,0.01)
 segments(s,rep(0,length(s)),s,f(s),col=3)
 ```
 
-**b)**  maior que 1,5
+**b)** maior que 1,5
 
 ```{r echo=T, eval=F}
 plot(f,0,4,lwd=2)
@@ -106,13 +106,12 @@ integrate(f,1.5,4)
 
 <br>
 
-**3.**  Dada a função: $$f(x)=\left\{\begin{array}{cr}
+**3.** Dada a função: $$f(x)=\left\{\begin{array}{cr}
       2e^{-2x},& x\geq 0\\
       0, & x<0
       \end{array}\right.,$$
 
-
-**a.**  Mostre que é uma função densidade de probabilidade (f.d.p.).
+**a.** Mostre que é uma função densidade de probabilidade (f.d.p.).
 
 ```{r echo=T,eval=F}
 g=function(x) 2*exp(-2*x)
@@ -123,8 +122,7 @@ segments(s,rep(0,length(s)),s,g(s),col=2)
 integrate(g,0,Inf)
 ```
 
-
-**b.**  Calcule a probabilidade de $X>10$.
+**b.** Calcule a probabilidade de $X>10$.
 
 ```{r echo=T,eval=F}
 integrate(g,10,Inf)
@@ -133,7 +131,6 @@ plot(g,9.5,15,lwd=2)
 s=seq(10,15,.01)
 segments(s,rep(0,length(s)),s,g(s),col=2)
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -173,7 +170,6 @@ segments(s,rep(0,length(s)),s,f(s),col="red")
 punif(2,-2,3)-punif(0,-2,3)
 ```
 
-
 ------------------------------------------------------------------------
 
 ## Parâmetros característicos da Distribuição Uniforme {.espacamento-maior}
@@ -190,7 +186,7 @@ punif(2,-2,3)-punif(0,-2,3)
 
 <br>
 
-**4.**  Se uma v.a. U assume qualquer valor no intervalo $(\frac{-1}{2},\frac{1}{2})$ com a mesma probabilidade, qual é a f.d.p. desta v.a.?
+**4.** Se uma v.a. U assume qualquer valor no intervalo $(\frac{-1}{2},\frac{1}{2})$ com a mesma probabilidade, qual é a f.d.p. desta v.a.?
 
 Qual é a função de distribuição desta v.a.?
 
@@ -228,15 +224,15 @@ punif(-1/5,-1/2,1/2,lower.tail = F)
 
 <br>
 
-**1.**  É simétrica em relação a $\mu$;
+**1.** É simétrica em relação a $\mu$;
 
 <br>
 
-**2.**  O ponto de máximo de $f(x)$ ocorre em $x=\mu$. Neste ponto as três medidas de posição (média, moda e mediana) se confundem.
+**2.** O ponto de máximo de $f(x)$ ocorre em $x=\mu$. Neste ponto as três medidas de posição (média, moda e mediana) se confundem.
 
 <br>
 
-**3.**  A área compreendida abaixo da curva normal e acima do eixo $x$ vale 1.  
+**3.** A área compreendida abaixo da curva normal e acima do eixo $x$ vale 1.
 
 ------------------------------------------------------------------------
 
@@ -268,7 +264,7 @@ punif(-1/5,-1/2,1/2,lower.tail = F)
 
 <embed src="https://pessoal.uel.br/biz/wp-content/uploads/2025/06/Distribuicao-Normal.pdf" width="100%" height="600px">
 
----
+------------------------------------------------------------------------
 
 ### Exemplo
 
@@ -278,7 +274,8 @@ punif(-1/5,-1/2,1/2,lower.tail = F)
 
 ::::: columns
 ::: column
-**a.**  entre 29,7 e 32,0 cm é:
+**a.** entre 29,7 e 32,0 cm é:
+
 ```{r echo=T,eval=F}
 install.packages("BSDA")
 BSDA::normarea(29.7,32,29.5,2.7)
@@ -287,7 +284,9 @@ pnorm(32,29.5,2.7)-pnorm(29.7,29.5,2.7)
 # ou pela normal padrão
 pnorm(0.93)-pnorm(0.07)
 ```
-**b.**  acima de 32,0 cm é:
+
+**b.** acima de 32,0 cm é:
+
 ```{r echo=T,eval=F}
 BSDA::normarea(32,Inf,m=29.5,sig=2.7)
 ##Calculando
@@ -298,7 +297,8 @@ pnorm(0.93,lower.tail = F)
 :::
 
 ::: column
-**c.**  entre 27,0 e 32,0 cm é:
+**c.** entre 27,0 e 32,0 cm é:
+
 ```{r echo=T,eval=F}
 BSDA::normarea(27,32,29.5,2.7)
 ##Calculando
@@ -306,7 +306,9 @@ pnorm(32,29.5,2.7)-pnorm(27,29.5,2.7)
 # ou pela normal padrão
 pnorm(.93)-pnorm(-.93)
 ```
-**d.**  entre 25,0 e 27,0 cm é:
+
+**d.** entre 25,0 e 27,0 cm é:
+
 ```{r echo=T,eval=F}
 BSDA::normarea(25,27,29.5,2.7)
 ##Calculando
@@ -323,27 +325,27 @@ pnorm(-.93)-pnorm(-1.67)
 
 <br>
 
-**5.**  Seja $Z\sim N(0,1)$. Usando a tabela da distribuição normal padrão, calcular:
+**5.** Seja $Z\sim N(0,1)$. Usando a tabela da distribuição normal padrão, calcular:
 
 ::::: columns
 ::: column
-**a)**  $P(0<z<1,57)$
+**a)** $P(0<Z<1,57)$
 
-**b)**  $P(-1,89<z<0)$
+**b)** $P(-1,89<Z<0)$
 
-**c)**  $P(-1,23<z<1,05)$
+**c)** $P(-1,23<Z<1,05)$
 
-**d)**  $P(-0,85<z<1,92)$
+**d)** $P(-0,85<Z<1,92)$
 :::
 
 ::: column
-**e)**  $P(-2,22<z<-1,35)$
+**e)** $P(-2,22<Z<-1,35)$
 
-**f)**  $P(0,52<z<1,23)$
+**f)** $P(0,52<Z<1,23)$
 
-**g)**  $P(z>-1,27)$
+**g)** $P(Z>-1,27)$
 
-**h)**  $P(z<2,23)$
+**h)** $P(Z<2,23)$
 :::
 :::::
 
@@ -375,24 +377,24 @@ pnorm(2.23)
 
 ### Exercício
 
-**6.**  Sabendo-se que $Z\sim N(0,1)$ e usando a tabela da distribuição normal padrão, obter $z$ tal que:
+**6.** Sabendo-se que $Z\sim N(0,1)$ e usando a tabela da distribuição normal padrão, obter $z$ tal que:
 
 ::::: columns
 ::: column
-**(a)** $P(0<Z<z)=0,475$
+**(a)** $P(0<Z<z_t)=0,475$
 
-**(b)** $P(-z<Z<0)=0,35314$
+**(b)** $P(-z_t<Z<0)=0,35314$
 
-**(c)** $P(-z<Z<z)=0,95$
+**(c)** $P(-z_t<Z<z_t)=0,95$
 
-**(d)** $P(Z<z)=0,36693$
+**(d)** $P(Z<z_t)=0,36693$
 :::
 
 ::: column
-**(e)** $P(Z<z)=0,82121$\
-**(f)** $P(Z<z)=0,30153$\
-**(g)** $P(Z>z)=0,95254$\
-**(h)** $P(Z>z)=0,07493$\
+**(e)** $P(Z<z_t)=0,82121$\
+**(f)** $P(Z<z_t)=0,30153$\
+**(g)** $P(Z>z_t)=0,95254$\
+**(h)** $P(Z>z_t)=0,07493$\
 :::
 :::::
 
@@ -421,27 +423,28 @@ qnorm(0.07493,lower.tail = F)
 
 ### Exercício
 
-**7.**  Seja $Y\sim N(4,1)$. Determine:
+**7.** Seja $Y\sim N(4,1)$. Determine:
 
 <br>
 
 ::::: columns
 ::: column
-**a)**  $P(Y\leq 4)$
+**a)** $P(Y\leq 4)$
 
-**b)**  $P(4<Y<5)$
+**b)** $P(4<Y<5)$
 
-**c)**  $P(2<Y<5)$
+**c)** $P(2<Y<5)$
 :::
 
 ::: column
-**d)**  $P(5<Y<7)$
+**d)** $P(5<Y<7)$
 
-**e)**  $P(Y\leq 1)$
+**e)** $P(Y\leq 1)$
 
-**f)**  $P(0\leq Y\leq 2)$
+**f)** $P(0\leq Y\leq 2)$
 :::
 :::::
+
 ```{r echo=T,eval=F}
 # a)
 pnorm(4,4,1)
@@ -463,14 +466,14 @@ pnorm(2,4,1)-pnorm(0,4,1)
 
 <br>
 
-**8.**  O diâmetro (X) de certa espécie de árvore é uma variável aleatória com distribuição normal de média 50 cm e desvio padrão de 6 cm. Se o diâmetro de uma árvore diferir da média de mais de 10 cm, esta árvore é vendida por 10 u.m; caso contrário, é vendida por 20 u.m. Qual o preço médio de venda de cada árvore?
-
+**8.** O diâmetro (X) de certa espécie de árvore é uma variável aleatória com distribuição normal de média 50 cm e desvio padrão de 6 cm. Se o diâmetro de uma árvore diferir da média de mais de 10 cm, esta árvore é vendida por 10 u.m; caso contrário, é vendida por 20 u.m. Qual o preço médio de venda de cada árvore?
 
 ```{r echo=T,eval=F}
 pv20=pnorm(60,50,6)-pnorm(40,50,6)
 pv10=1-pv20
 (ValorMedioVenda=10*pv10+20*pv20)
 ```
+
 ------------------------------------------------------------------------
 
 ### A dist. Normal como aproximação da dist. Binomial
@@ -491,10 +494,7 @@ pv10=1-pv20
 
 **Exemplo 3:** Considere uma variável $X\sim b(200;0,3)$, qual a probabilidade de x ser maior ou igual que 50. Realize os cálculos de probabilidade utilizando a aproximação $Y\sim N(60,42)$.
 
-
-  
 ::: {.scrollable style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"}
-
 ```{r echo=TRUE, eval=FALSE}
 ### Pela binomial
 fb=function(x)dbinom(x,200,.3)
@@ -524,19 +524,22 @@ pnorm(-1.62,lower.tail = F)
 
 ### Exercício
 
-**9.**  Foi feito um estudo sobre altura de plantas de milho de certo híbrido, observando-se que ela se distribui normalmente com média igual a 2,20 m e desvio padrão igual a 0,20 m. Qual a porcentagem de plantas com altura:
+**9.** Foi feito um estudo sobre altura de plantas de milho de certo híbrido, observando-se que ela se distribui normalmente com média igual a 2,20 m e desvio padrão igual a 0,20 m. Qual a porcentagem de plantas com altura:
 
+**a.** entre 2,15 m e 2,25 m;
 
-
-**a.**  entre 2,15 m e 2,25 m;
 ```{r echo=TRUE, eval=FALSE}
 pnorm(2.25,2.2,.2)-pnorm(2.15,2.2,.2)
 ```
-**b.**  entre 2,00 m e 2,40 m;
+
+**b.** entre 2,00 m e 2,40 m;
+
 ```{r echo=TRUE, eval=FALSE}
 pnorm(2.4,2.2,.2)-pnorm(2,2.2,.2)
 ```
-**c.**  acima de 2,30 m.
+
+**c.** acima de 2,30 m.
+
 ```{r echo=TRUE, eval=FALSE}
 pnorm(2.3,2.2,.2,lower.tail = F)
 ```
